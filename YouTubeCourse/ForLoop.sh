@@ -29,3 +29,22 @@
 # do
 #     echo $i
 # done
+
+#COMMANDS
+#Looping trough commands
+# for VAR in ls pwd date
+# do
+
+#     echo --------- $VAR
+#     $VAR
+# done
+
+# * check for everything in the current folder
+for VAR in *
+do
+    if [[ -d $VAR ]]
+    then
+        echo $VAR
+    fi
+done
+
