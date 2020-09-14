@@ -191,3 +191,175 @@ awk 'BEGIN { print PROCINFO["pid"] }'
 #TEXTDOMAIN
 #It represents the text domain of the AWK program. It is used to find the 
 #localized translations for the program's strings.
+awk 'BEGIN { print TEXTDOMAIN }'
+
+---------------
+
+Arithmetic Operators
+----------------
+
+#Addition
+#It is represented by plus (+) symbol which adds two or more numbers.
+awk 'BEGIN { a = 50; b = 20; print "(a + b) = ", (a + b) }'
+
+#Subtraction
+#It is represented by minus (-) symbol which subtracts two or more numbers.
+awk 'BEGIN { a = 50; b = 20; print "(a - b) = ", (a - b) }'
+
+#Multiplication
+#It is represented by asterisk (*) symbol which multiplies two or more numbers. 
+awk 'BEGIN { a = 50; b = 20; print "(a * b) = ", (a * b) }'
+
+#Division
+#It is represented by slash (/) symbol which divides two or more numbers. 
+awk 'BEGIN { a = 50; b = 20; print "(a / b) = ", (a / b) }'
+
+#Modulus
+#It is represented by percent (%) symbol which finds the Modulus division of 
+#two or more numbers. 
+
+----------------
+
+IMCREMENT AND DECREMENT 
+------------------
+
+#Pre-Increment
+#It is represented by ++. It increments the value of an operand by 1. 
+#This operator first increments the value of the operand, 
+#then returns the incremented value. For instance, in the following example,
+#this operator sets the value of both the operands, a and b, to 11.
+awk 'BEGIN { a = 10; b = ++a; printf "a = %d, b = %d\n", a, b }'
+
+#Pre-Decrement
+#It is represented by --. It decrements the value of an operand by 1. 
+#This operator first decrements the value of the operand,
+#then returns the decremented value. For instance, in the following example,3
+#this operator sets the value of both the operands, a and b, to 9.
+awk 'BEGIN { a = 10; b = --a; printf "a = %d, b = %d\n", a, b }'
+
+#Post-Increment
+#It is represented by ++. It increments the value of an operand by 1.
+#This operator first returns the value of the operand, then it increments 
+#its value. For instance, the following code sets the value of operand a to 11 and b to 10.
+awk 'BEGIN { a = 10; b = a++; printf "a = %d, b = %d\n", a, b }'
+
+#Post-Decrement
+#It is represented by --. It decrements the value of an operand by 1. 
+#This operator first returns the value of the operand, 
+#then it decrements its value. For instance, the following 
+#code sets the value of the operand a to 9 and b to 10.
+awk 'BEGIN { a = 10; b = a--; printf "a = %d, b = %d\n", a, b }'
+
+------------------
+
+Assignment Operators
+
+#Simple Assignment
+#It is represented by =.
+awk 'BEGIN { name = "Jerry"; print "My name is", name }'
+
+#Shorthand Addition
+#It is represented by +=.
+awk 'BEGIN { cnt = 10; cnt += 10; print "Counter =", cnt }'
+
+#Shorthand Subtraction
+#It is represented by -=
+awk 'BEGIN { cnt = 100; cnt -= 10; print "Counter =", cnt }'
+
+#Shorthand Multiplication
+#It is represented by *=.
+awk 'BEGIN { cnt = 10; cnt *= 10; print "Counter =", cnt }'
+
+#Shorthand Division
+#It is represented by /=. 
+awk 'BEGIN { cnt = 100; cnt /= 5; print "Counter =", cnt }'
+
+#Shorthand Modulo
+#It is represented by %=.
+awk 'BEGIN { cnt = 100; cnt %= 8; print "Counter =", cnt }'
+
+#Shorthand Exponential
+#It is represented by ^=.
+awk 'BEGIN { cnt = 2; cnt ^= 4; print "Counter =", cnt }'
+
+
+#Shorthand Exponential
+#It is represented by **=.
+awk 'BEGIN { cnt = 2; cnt **= 4; print "Counter =", cnt }'
+
+---------------------
+
+RELATIONAL OPERATORS
+----------------------
+#Equal to
+#It is represented by ==. It returns true if both operands are equal, 
+#otherwise it returns false.
+awk 'BEGIN { a = 10; b = 10; if (a == b) print "a == b" }'
+
+#Not Equal to
+#It is represented by !=. It returns true if both operands are unequal,
+#otherwise it returns false.
+awk 'BEGIN { a = 10; b = 20; if (a != b) print "a != b" }'
+
+#Less Than
+#It is represented by <. It returns true if the left-side operand is less 
+#than the right-side operand; otherwise it returns false.
+awk 'BEGIN { a = 10; b = 20; if (a < b) print "a  < b" }'
+
+#Less Than or Equal to
+#It is represented by <=. It returns true if the left-side operand is 
+#less than or equal to the right-side operand; otherwise it returns false.
+awk 'BEGIN { a = 10; b = 10; if (a <= b) print "a <= b" }'
+
+#Greater Than
+#It is represented by >. It returns true if the left-side operand is greater
+#than the right-side operand, otherwise it returns false.
+awk 'BEGIN { a = 10; b = 20; if (b > a ) print "b > a" }'
+
+#Greater Than or Equal to
+#It is represented by >=. It returns true if the left-side operand is 
+#greater than or equal to the right-side operand; otherwise it returns false.
+awk 'BEGIN { a = 100; b = 20; if (a > b) print "a  > b" }'
+------------
+
+LOGICAL OPERATORS
+--------------
+
+#Logical AND
+#It is represented by &&. Its syntax is as follows 
+#expr1 && expr2
+#It evaluates to true if both expr1 and expr2 evaluate to true; 
+#otherwise it returns false. expr2 is evaluated if and only if expr1 evaluates to true. 
+ awk 'BEGIN {
+   num = 5; if (num >= 0 && num <= 7) printf "%d is in octal format\n", num 
+}'
+
+#Logical OR
+#It is represented by ||. The syntax of Logical OR is
+#expr1 || expr2
+#It evaluates to true if either expr1 or expr2 evaluates to true; 
+#otherwise it returns false. expr2 is evaluated if and only if expr1 evaluates to false. 
+#The following example demonstrates this −
+awk 'BEGIN {
+   ch = "\n"; if (ch == " " || ch == "\t" || ch == "\n") 
+   print "Current character is whitespace." 
+}'
+
+#Logical NOT
+#It is represented by exclamation mark (!). The following example demonstrates this
+#! expr1
+#It returns the logical compliment of expr1. If expr1 evaluates to true, it returns 0;
+#otherwise it returns 1. For instance, the following example checks 
+#whether a string is empty or not.
+awk 'BEGIN { name = ""; if (! length(name)) print "name is empty string." }'
+
+----------------
+
+TERNARY OPERATORS 
+---------------------
+#We can easily implement a condition expression using ternary operator.
+#The following example demonstrates this
+#condition expression ? statement1 : statement2
+#When the condition expression returns true, statement1 gets executed;
+#otherwise statement2 is executed.
+awk 'BEGIN { a = 10; b = 20; (a > b) ? max = a : max = b; print "Max =", max}'
