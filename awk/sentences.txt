@@ -14,6 +14,110 @@ awk [options] -f file ....
 #READ CONTENT OF A FILE WITH A FILE AS INSTRUCTION
 awk -f command.awk marks.txt
 
+---------------------------
 #AWK STANDARD OPTIONS
+
 #-v option -> It assigns values to a variable before the program execution
 awk -v name=Jerry 'BEGIN{printf "Name = %s\n", name}'
+
+#--dump-variables[=file] option -> It prints a sorted list of global variables and their final 
+#values to file. The default file is awkvars.out.
+awk --dump-variables ''
+cat awkvars.out 
+
+#--help option -> This option prints the help message on standard output.
+awk --help
+
+#--lint[=fatal] option ->This option enables checking of non-portable or dubious constructs. 
+#When an argument fatal is provided, it treats warning messages as errors. 
+
+#--posix option -> This option turns on strict POSIX compatibility, in which all 
+#common and gawk-specific extensions are disabled.
+SIN EJEMPLO
+
+#--profile[=file] option -> This option generates a pretty-printed version of the program 
+#in file. Default file is awkprof.out. 
+awk --profile 'BEGIN{printf"---|Header|--\n"} {print} END{printf"---|Footer|---\n"}' marks.txt > /dev/null 
+
+#--traditional option -> This option disables all gawk-specific extensions.
+SIN EJEMPLO
+
+#--version option -> This option displays the version information of the AWK program.
+awk --version
+
+-------------------
+
+#PRINTING ONE COLUMN OR FIELD
+#"\t" -> this alignsthe text
+awk '{print $3 "\t" $4}' marks.txt
+
+#PRINTING ALL LINES
+#/a/ -> this is like an if statement, if the thing that we're looking for exists
+# it gets the searched thing, otherwise, it shows everything
+awk '/a/ {print $0}' marks.txt
+awk '/a/' marks.txt -> as this sentence has no cryteria to look for, it prints everything
+
+#PRINTING COLUMNS IN ANY ORDER
+awk '/a/ {print $4 "\t" $3}' marks.txt
+
+#CONTING AND PRINTING MATCHED PATTERN
+awk '/a/{++cnt} END {print "Count = ", cnt}' marks.txt
+
+#PRINTING LINES THAT CONTAIN MORE THAN 18 CHARACTERS
+awk 'length($0) > 18' marks.txt
+
+----------------
+#standard awk variables
+#ARGC -> It implies the number of arguments provided at the command line.
+#It shows arguments because, it is also ounting 'awk' at the beginning
+awk 'BEGIN {print "Arguments =", ARGC}' One Two Three Four
+
+#CONVFMT
+#It represents the conversion format for numbers. Its default value is %.6g.
+awk 'BEGIN { print "Conversion Format =", CONVFMT }'
+
+#ENVIRON
+#It is an associative array of environment variables.
+awk 'BEGIN { print ENVIRON["USER"] }'
+
+#FILENAME
+#It represents the current file name.
+awk 'END {print FILENAME}' marks.txt
+
+#FS
+#It represents the (input) field separator and its default value is space.
+#You can also change this by using -F command line option.
+awk 'BEGIN {print "FS = " FS}' | cat -vte
+
+#NF
+#It represents the number of fields in the current record. For instance,
+#the following example prints only those lines that contain more than two fields.
+
+
+#NR
+#It represents the number of the current record. For instance, 
+#the following example prints the record if the current record number is less than three.
+echo -e "One Two\nOne Two Three\nOne Two Three Four" | awk 'NR < 3'
+
+#FNR
+#It is similar to NR, but relative to the current file. It is useful when AWK is operating
+#on multiple files. Value of FNR resets with new file.
+SIN EJEMPLO
+
+#OFMT
+#It represents the output format number and its default value is %.6g.
+awk 'BEGIN {print "OFMT = " OFMT}'
+
+#OFS
+#It represents the output field separator and its default value is space.
+awk 'BEGIN {print "OFS = " OFS}' | cat -vte
+
+#ORS
+#It represents the output record separator and its default value is newline.
+awk 'BEGIN {print "ORS = " ORS}' | cat -vte
+
+#RLENGTH
+#It represents the length of the string matched by match function. 
+#AWK's match function searches for a given string in the input-string.
+awk 'BEGIN { if (match("One Two Three", "re")) { print RLENGTH } }'
+
