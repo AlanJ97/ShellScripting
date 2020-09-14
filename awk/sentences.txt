@@ -121,3 +121,73 @@ awk 'BEGIN {print "ORS = " ORS}' | cat -vte
 #AWK's match function searches for a given string in the input-string.
 awk 'BEGIN { if (match("One Two Three", "re")) { print RLENGTH } }'
 
+#RS
+#It represents (input) record separator and its default value is newline.
+awk 'BEGIN {print "RS = " RS}' | cat -vte
+
+#RSTART
+#It represents the first position in the string matched by match function.
+awk 'BEGIN { if (match("One Two Three", "Thre")) { print RSTART } }'
+
+#SUBSEP
+#It represents the separator character for array subscripts and its default value is \034.
+awk 'BEGIN { print "SUBSEP = " SUBSEP }' | cat -vte
+
+#$0
+#It represents the entire input record.
+awk '{print $0}' marks.txt
+
+#$n
+#It represents the nth field in the current record where the fields are separated by FS.
+awk '{print $3 "\t" $4}' marks.txt
+
+---------------------
+
+GNU AWK Specific Variables
+---------------------
+#ARGIND
+#It represents the index in ARGV of the current file being processed.
+awk '{ 
+   print "ARGIND   = ", ARGIND; print "Filename = ", ARGV[ARGIND] 
+}' junk1 junk2 junk3
+
+#BINMODE
+#It is used to specify binary mode for all file I/O on non-POSIX systems. 
+#Numeric values of 1, 2, or 3 specify that input files, output files, or all files,
+#respectively, should use binary I/O. String values of r or w specify that input 
+#files or output files, respectively, should use binary I/O. String values of rw or 
+#wr specify that all files should use binary I/O.
+SIN EJEMPLO
+
+#ERRNO
+#A string indicates an error when a redirection fails for getline or if close call fails.
+awk 'BEGIN { ret = getline < "junk.txt"; if (ret == -1) print "Error:", ERRNO }'
+
+#FIELDWIDTHS
+#A space separated list of field widths variable is set, GAWK parses the input into fields of 
+#fixed width, instead of using the value of the FS variable as the field separator.
+awk 'BEGIN{IGNORECASE = 1} /amit/' marks.txt
+
+#FIELDWIDTHS
+#A space separated list of field widths variable is set, GAWK parses the input into fields of 
+#fixed width, instead of using the value of the FS variable as the field separator.
+SIN EJEMPLO
+
+#IGNORECASE
+#When this variable is set, GAWK becomes case-insensitive. 
+awk 'BEGIN{IGNORECASE = 1} /amit/' marks.txt
+
+#LINT
+#It provides dynamic control of the --lint option from the GAWK program. When this variable 
+#is set, GAWK prints lint warnings. When assigned the string value fatal, lint warnings
+#become fatal errors, exactly like --lint=fat
+awk 'BEGIN {LINT = 1; a}'
+
+#PROCINFO
+#This is an associative array containing information about the process, 
+#such as real and effective UID numbers, process ID number, and so on.
+awk 'BEGIN { print PROCINFO["pid"] }'
+
+#TEXTDOMAIN
+#It represents the text domain of the AWK program. It is used to find the 
+#localized translations for the program's strings.
