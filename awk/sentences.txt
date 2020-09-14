@@ -1,0 +1,19 @@
+
+#BASIC SINTAX
+awk [OPTIONS] FILE
+
+#PRINT CONTENT OF A FILE
+awk 'BEGIN {} {print}' marks.txt
+
+#PRINT CONTENT OF A FILE WITH HEADERS
+awk 'BEGIN{printf "Sr No\tName\tSub\tMarks\n"} {print}' marks.txt
+
+#BASIC SINTAX OF HOW TO USE A FILE WITH INSTRUCTIONS AS THE PURE INSTRUCTONS ON THE COMMAND LINE
+awk [options] -f file ....
+
+#READ CONTENT OF A FILE WITH A FILE AS INSTRUCTION
+awk -f command.awk marks.txt
+
+#AWK STANDARD OPTIONS
+#-v option -> It assigns values to a variable before the program execution
+awk -v name=Jerry 'BEGIN{printf "Name = %s\n", name}'
