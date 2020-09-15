@@ -967,3 +967,116 @@ awk 'BEGIN {
 }'
 
 -------------------------
+
+MISCELLANEOUS FUNCTIONS
+------------------------
+#close(expr)
+#This function closes file of pipe..
+
+awk 'BEGIN {
+   cmd = "tr [a-z] [A-Z]"
+   print "hello, world !!!" |& cmd
+   
+   close(cmd, "to")
+   cmd |& getline out
+   print out;
+   
+   close(cmd);
+}'
+
+#Does the script look cryptic? Let us demystify it.
+
+    #The first statement, cmd = "tr [a-z] [A-Z]" - is the command to which we establish 
+    #the two way communication from AWK.
+
+    #The next statement, i.e., the print command, provides input to the tr command. 
+    #Here &| indicates two-way communication.
+
+    #The third statement, i.e., close(cmd, "to"), closes the to process after competing 
+    #its execution.
+
+    #The next statement cmd |& getline out stores the output into out variable 
+    #with the aid of getline function.
+
+    #The next print statement prints the output and finally the close 
+    #function closes the command.
+
+#delete
+#This function deletes an element from an array. The following example shows the usage of the delete function −
+
+awk 'BEGIN {
+   arr[0] = "One"
+   arr[1] = "Two"
+   arr[2] = "Three"
+   arr[3] = "Four"
+   print "Array elements before delete operation:"
+   
+   for (i in arr) {
+      print arr[i]
+   }
+   delete arr[0]
+   delete arr[1]
+   print "Array elements after delete operation:"
+   
+   for (i in arr) {
+      print arr[i]
+   }
+}'
+
+#exit
+#This function stops the execution of a script. It also accepts an optional 
+#expr which becomes AWK's return value. The following example describes the 
+#usage of exit function.
+awk 'BEGIN {
+   print "Hello, World !!!"
+   exit 10
+   print "AWK never executes this statement."
+}'
+
+#fflush
+#This function flushes any buffers associated with open output file or pipe. 
+#The following syntax demonstrates the function.
+#fflush([output-expr])
+#If no output-expr is supplied, it flushes the standard output. 
+#If output-expr is the null string (""), then it flushes all open files and pipes.
+SIN EJEMPLO
+
+#getline
+#This function instructs AWK to read the next line. 
+#The following example reads and displays the marks.txt file using getline function.
+awk '{getline; print $0}' marks.txt
+
+#The script works fine. But where is the first line? Let us find out.
+#At the start, AWK reads the first line from the file marks.txt
+#and stores it into $0 variable.
+#And finally, AWK's print statement prints the second line. 
+#This process continues until the end of the file.
+
+#next
+#The next function changes the flow of the program. It causes the current processing 
+#of the pattern space to stop. The program reads the next line, and starts executing
+#the commands again with the new line. For instance, the following program does not 
+#perform any processing when a pattern match succeeds.
+awk '{if ($0 ~/Shyam/) next; print $0}' marks.txt
+
+#nextfile
+#The nextfile function changes the flow of the program. It stops processing the 
+#current input file and starts a new cycle through pattern/procedures statements, 
+#beginning with the first record of the next file. For instance, the following 
+#example stops processing the first file when a pattern match succeeds.
+#First create two files. Let us say file1.txt contains −
+awk '{ if ($0 ~ /file1:str2/) nextfile; print $0 }' file1.txt file2.txt
+
+#return
+#This function can be used within a user-defined function to return the value.
+#Please note that the return value of a function is undefined if expr is not provided. 
+#The following example describes the usage of the return function.
+#First, create a functions.awk file containing AWK command as shown below −
+
+#system
+#This function executes the specified command and returns its exit status. 
+#A return status 0 indicates that a command execution has succeeded. 
+#A non-zero value indicates a failure of command execution. 
+#For instance, the following example displays the current date 
+#and also shows the return status of the command.
+awk 'BEGIN { ret = system("date"); print "Return value = " ret }'

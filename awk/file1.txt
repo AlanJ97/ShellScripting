@@ -1,0 +1,4 @@
+file1:str1
+file1:str2
+file1:str3
+file1:str4
