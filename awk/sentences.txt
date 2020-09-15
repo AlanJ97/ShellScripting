@@ -471,3 +471,52 @@ echo -e "111\n22\n123\n234\n456\n222"  | awk '/2+/'
 #Parentheses () are used for grouping and the character | is used for alternatives. 
 #For instance, the following regular expression matches the lines containing 
 #either Apple Juice or Apple Cake.
+echo -e "Apple Juice\nApple Pie\nApple Tart\nApple Cake" | awk '/Apple (Juice|Cake)/'
+
+----------------------
+
+ARRAYS
+
+--------------------------
+#AWK has associative arrays and one of the best thing about it is – the indexes need 
+#not to be continuous set of number; you can use either string or number as an array index. 
+#Also, there is no need to declare the size of an array in advance – 
+#arrays can expand/shrink at runtime.
+
+#Its syntax is as follows −
+#array_name[index] = value
+
+#Where array_name is the name of array, index is the array index, 
+#and value is any value assigning to the element of the array
+
+#Creating Array
+awk 'BEGIN {
+   fruits["mango"] = "yellow";
+   fruits["orange"] = "orange"
+   print fruits["orange"] "\n" fruits["mango"]
+}'
+
+#Deleting Array Elements
+#For insertion, we used assignment operator. 
+#Similarly, we can use delete statement to remove an element from the array. 
+#delete array_name[index]
+awk 'BEGIN {
+   fruits["mango"] = "yellow";
+   fruits["orange"] = "orange";
+   delete fruits["orange"];
+   print fruits["orange"]
+}'
+
+#Multi-Dimensional arrays
+#AWK only supports one-dimensional arrays. But you can easily simulate a multi-dimensional 
+#array using the one-dimensional array itself.
+
+#For instance, given below is a 3x3 two-dimensional array −
+#100   200   300
+#400   500   600
+#700   800   900
+
+#In the above example, array[0][0] stores 100, array[0][1] stores 200, and so on.
+#To store 100 at array location [0][0], we can use the following syntax −
+#Syntax
+#array["0,0"] = 100
