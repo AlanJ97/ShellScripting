@@ -733,3 +733,165 @@ awk 'BEGIN {
 #This function generates a random number using seed value. It uses expr as the new 
 #seed for the random number generator. In the absence of expr, it uses 
 #the time of day as the seed value.
+awk 'BEGIN {
+   param = 10
+   
+   printf "srand() = %d\n", srand()
+   printf "srand(%d) = %d\n", param, srand(param)
+}'
+
+------------------------------------------------
+
+STRING FUNCTIONS
+-------------------------
+#asort(arr [, d [, how] ])
+#This function sorts the contents of arr using GAWK's normal rules for comparing values,
+#and replaces the indexes of the sorted values arr with sequential integers starting with 1.
+awk 'BEGIN {
+   arr[0] = "Three"
+   arr[1] = "One"
+   arr[2] = "Two"
+   print "Array elements before sorting:"
+   
+   for (i in arr) {
+      print arr[i]
+   }
+   asort(arr)
+   print "Array elements after sorting:"
+   
+   for (i in arr) {
+      print arr[i]
+   }
+}'
+
+#asorti(arr [, d [, how] ])
+#The behavior of this function is the same as that of asort(), except that the 
+#array indexes are used for sorting.
+awk 'BEGIN {
+   arr["Two"] = 1
+   arr["One"] = 2
+   arr["Three"] = 3
+   asorti(arr)
+   print "Array indices after sorting:"
+   
+   for (i in arr) {
+      print arr[i]
+   }
+}'
+
+#gsub(regex, sub, string)
+#gsub stands for global substitution. It replaces every occurrence of regex with 
+#the given string (sub). The third parameter is optional. If it is omitted, then $0 is used.
+awk 'BEGIN {
+   str = "Hello, World"
+   print "String before replacement = " str
+   
+   gsub("World", "Jerry", str)
+   print "String after replacement = " str
+}'
+
+#index(str, sub)
+#It checks whether sub is a substring of str or not. On success, it returns the position where sub starts; 
+#otherwise it returns 0. The first character of str is at position 1.
+awk 'BEGIN {
+   str = "One Two Three"
+   subs = "Two"
+   ret = index(str, subs)
+   
+   printf "Substring \"%s\" found at %d location.\n", subs, ret
+}'
+
+#length(str)
+#It returns the length of a string.
+awk 'BEGIN {
+   str = "Hello, World !!!"
+   print "Length = ", length(str)
+}'
+
+#match(str, regex)
+#It returns the index of the first longest match of regex in string str. 
+#It returns 0 if no match found.
+awk 'BEGIN {
+   str = "One Two Three"
+   subs = "Two"
+   ret = match(str, subs)
+  
+   printf "Substring \"%s\" found at %d location.\n", subs, ret
+}'
+
+#split(str, arr, regex)
+#This function splits the string str into fields by regular expression regex and the 
+#fields are loaded into the array arr. If regex is omitted, then FS is used.
+awk 'BEGIN {
+   str = "One,Two,Three,Four"
+   split(str, arr, ",")
+   print "Array contains following values"
+   
+   for (i in arr) {
+      print arr[i]
+   }
+}'
+
+#printf(format, expr-list)
+#This function returns a string constructed from expr-list according to format.
+awk 'BEGIN {
+   param = 1024.0
+   result = sqrt(param)
+   
+   printf "sqrt(%f) = %f\n", param, result
+}'
+
+
+#strtonum(str)
+#This function examines str and return its numeric value. If str begins with a 
+#leading 0, it is treated as an octal number. If str begins with a leading 0x or 0X, 
+#it is taken as a hexadecimal number. Otherwise, assume it is a decimal numbe
+awk 'BEGIN {
+   print "Decimal num = " strtonum("123")
+   print "Octal num = " strtonum("0123")
+   print "Hexadecimal num = " strtonum("0x123")
+}'
+
+#sub(regex, sub, string)
+#This function performs a single substitution. It replaces the first occurrence 
+#of the regex pattern with the given string (sub). The third parameter is optional. 
+#If it is omitted, $0 is used.
+awk 'BEGIN {
+   str = "Hello, World"
+   print "String before replacement = " str
+   
+   sub("World", "Jerry", str)
+   print "String after replacement = " str
+}'
+
+
+#substr(str, start, l)
+#This function returns the substring of string str, starting at index start of length l. 
+#If length is omitted, the suffix of str starting at index start is returned.
+ awk 'BEGIN {
+   str = "Hello, World !!!"
+   subs = substr(str, 1, 5)
+
+   print "Substring = " subs
+}'
+
+
+#tolower(str)
+#This function returns a copy of string str with all upper-case characters converted
+#to lower-case.
+awk 'BEGIN {
+   str = "HELLO, WORLD !!!"
+   print "Lowercase string = " tolower(str)
+}'
+
+
+#toupper(str)
+#This function returns a copy of string str with all lower-case characters 
+#converted to upper case.
+awk 'BEGIN {
+   str = "hello, world !!!"
+   print "Uppercase string = " toupper(str)
+}'
+----------------------------
+
+TIME FUNCTIONS
