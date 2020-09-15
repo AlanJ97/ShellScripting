@@ -520,3 +520,74 @@ awk 'BEGIN {
 #To store 100 at array location [0][0], we can use the following syntax −
 #Syntax
 #array["0,0"] = 100
+
+#Though we gave 0,0 as index, these are not two indexes. 
+#In reality, it is just one index with the string 0,0.
+
+#The following example simulates a 2-D array −
+#awk 'BEGIN {
+#   array["0,0"] = 100;
+#   array["0,1"] = 200;
+#   array["0,2"] = 300;
+#   array["1,0"] = 400;
+#   array["1,1"] = 500;
+#   array["1,2"] = 600;
+#
+#   # print array elements
+#   print "array[0,0] = " array["0,0"];
+#   print "array[0,1] = " array["0,1"];
+#   print "array[0,2] = " array["0,2"];
+#   print "array[1,0] = " array["1,0"];
+#   print "array[1,1] = " array["1,1"];
+#   print "array[1,2] = " array["1,2"];
+#}'
+
+---------------------
+
+
+CONTROL FLOW
+---------------------
+
+#If statement
+#It simply tests the condition and performs certain actions depending upon the condition.
+#Given below is the syntax of if statement −
+
+#Syntax
+#if (condition)
+#   action
+
+#We can also use a pair of curly braces as given below to execute multiple actions −
+#Syntax
+#if (condition) {
+#   action-1
+#   action-1
+#   .
+#   .
+#   action-n
+#}
+
+#If Else Statement
+#In if-else syntax, we can provide a list of actions to be performed when a condition becomes false.
+#The syntax of if-else statement is as follows −
+#if (condition)
+#   action-1
+#else
+#   action-2
+'BEGIN {
+   num = 11; if (num % 2 == 0) printf "%d is even number.\n", num; 
+             else printf "%d is odd number.\n", num 
+}'
+
+#If-Else-If Ladder
+#We can easily create an if-else-if ladder by using multiple if-else statements. 
+#The following example demonstrates this −
+#awk 'BEGIN {
+#   a = 30;
+  
+#   if (a==10)
+#   print "a = 10";
+#   else if (a == 20)
+#   print "a = 20";
+#  else if (a == 30)
+#   print "a = 30";
+#}'
