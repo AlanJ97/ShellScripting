@@ -895,3 +895,26 @@ awk 'BEGIN {
 ----------------------------
 
 TIME FUNCTIONS
+---------------------
+
+#systime
+#This function returns the current time of the day as the number 
+#of seconds since the Epoch (1970-01-01 00:00:00 UTC on POSIX systems).
+awk 'BEGIN {
+   print "Number of seconds since the Epoch = " systime()
+}'
+
+#mktime(datespec)
+#This function converts datespec string into a timestamp of the same 
+#form as returned by systime(). The datespec is a string of the form YYYY MM DD HH MM SS.
+awk 'BEGIN {
+   print "Number of seconds since the Epoch = " mktime("2014 12 14 30 20 10")
+}'
+
+#strftime([format [, timestamp[, utc-flag]]])
+#This function formats timestamps according to the specification in format.
+awk 'BEGIN {
+   print strftime("Time = %m/%d/%Y %H:%M:%S", systime())
+}'
+
+-----------------------
