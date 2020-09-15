@@ -661,3 +661,75 @@ awk 'BEGIN {
 }'
 echo $?
 ------------------------
+
+ARITHMETIC FUNCTIONS
+------------------
+#atan2(y, x)
+#It returns the arctangent of (y/x) in radians.
+#awk 'BEGIN {
+#   PI = 3.14159265
+#   x = -10
+#   y = 10
+#   result = atan2 (y,x) * 180 / PI;
+   
+#   printf "The arc tangent for (x=%f, y=%f) is %f degrees\n", x, y, result
+#}'
+
+#cos(expr)
+#This function returns the cosine of expr, which is expressed in radians. 
+#awk 'BEGIN {
+#   PI = 3.14159265
+#   param = 60
+#   result = cos(param * PI / 180.0);
+#   printf "The cosine of %f degrees is %f.\n", param, result
+#}'
+
+#exp(expr)
+#This function is used to find the exponential value of a variable.
+#awk 'BEGIN {
+#   param = 5
+#   result = exp(param);  
+#   printf "The exponential value of %f is %f.\n", param, result
+#}'
+
+#int(expr)
+#This function truncates the expr to an integer value.
+#awk 'BEGIN {
+#   param = 5.12345
+#   result = int(param)   
+#   print "Truncated value =", result
+#}'
+
+#log(expr)
+#This function calculates the natural logarithm of a variable.
+#awk 'BEGIN {
+#  param = 5.5
+#   result = log (param)  
+#   printf "log(%f) = %f\n", param, result
+#}'
+
+#rand
+#This function returns a random number N, between 0 and 1, such that 0 <= N < 1. 
+#For instance, the following example generates three random numbers
+#awk 'BEGIN {
+#   print "Random num1 =" , rand()
+#   print "Random num2 =" , rand()
+#   print "Random num3 =" , rand()
+#}'
+
+#sin(expr)
+#This function returns the sine of expr, which is expressed in radians. 
+awk 'BEGIN {
+   PI = 3.14159265
+   param = 30.0
+   result = sin(param * PI /180)
+   printf "The sine of %f degrees is %f.\n", param, result
+}'
+
+#sqrt(expr)
+#This function returns the square root of expr.
+
+#srand([expr])
+#This function generates a random number using seed value. It uses expr as the new 
+#seed for the random number generator. In the absence of expr, it uses 
+#the time of day as the seed value.
