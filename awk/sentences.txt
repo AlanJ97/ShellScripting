@@ -918,3 +918,52 @@ awk 'BEGIN {
 }'
 
 -----------------------
+
+BIT MANIPULATION FUNCTIONS
+------------------------
+#and
+#Performs bitwise AND operations
+awk 'BEGIN {
+   num1 = 10
+   num2 = 6
+   printf "(%d AND %d) = %d\n", num1, num2, and(num1, num2)
+}'
+
+#compl
+#It performs bitwise COMPLEMENT operation.
+awk 'BEGIN {
+   num1 = 10
+   printf "compl(%d) = %d\n", num1, compl(num1)
+}'
+
+#lshift
+#It performs bitwise LEFT SHIFT operation.
+awk 'BEGIN {
+   num1 = 10
+   printf "lshift(%d) by 1 = %d\n", num1, lshift(num1, 1)
+}'
+
+#rshift
+#It performs bitwise RIGHT SHIFT operation.
+awk 'BEGIN {
+   num1 = 10
+   printf "rshift(%d) by 1 = %d\n", num1, rshift(num1, 1)
+}'
+
+#or
+#It performs bitwise OR operation.
+awk 'BEGIN {
+   num1 = 10
+   num2 = 6
+   printf "(%d OR %d) = %d\n", num1, num2, or(num1, num2)
+}'
+
+#xor
+#It performs bitwise XOR operation.
+awk 'BEGIN {
+   num1 = 10
+   num2 = 6
+   printf "(%d XOR %d) = %d\n", num1, num2, xor(num1, num2)
+}'
+
+-------------------------
